@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đồng Hồ Số Hiển Thị Milisecond</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a2e, #16213e);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .clock-container {
+            position: relative;
+            width: 700px;
+            height: 350px;
+            background: #000;
+            border-radius: 30px;
+            border: 6px solid #00f6ff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), inset 0 0 20px rgba(0, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .digital-clock {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #00f6ff;
+            text-shadow: 0 0 10px #00f6ff, 0 0 20px #00aaff, 0 0 40px #007bff;
+        }
+
+        .base {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 60px;
+            background: #000;
+            border-radius: 30px;
+            border: 5px solid #00f6ff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="digital-clock" id="digital-clock">00:00:00.000</div>
+        <div class="base"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+            const clockElement = document.getElementById('digital-clock');
+            clockElement.textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+        }
+
+        setInterval(updateClock, 10); // Cập nhật mỗi 10ms để hiển thị mili giây mượt
+        updateClock();
+    </script>
+</body>
+</html>
